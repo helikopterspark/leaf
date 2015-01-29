@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>http://127.0.0.1:8080/Leaf/webroot/hello.php</loc>
-        <lastmod>2015-01-25</lastmod>
+        <loc>http://http://www.student.bth.se/~carb14/oophp/kmom01/leaf/webroot/home.php</loc>
+        <lastmod>2015-01-29</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
