@@ -1,0 +1,155 @@
+/**
+* General elements
+*/
+body {
+    margin: 0;
+    background-color: #ffffff;
+    background-image: -ms-linear-gradient(top,  #D7E0EE,  #D7E0EE 10%, #FFF 70%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.0, #D7E0EE), color-stop(0.10, #D7E0EE), color-stop(0.80, #FFF)); 
+    background: -moz-linear-gradient(top,  #D7E0EE,  #D7E0EE 10%, #FFF 70%);
+    font-family: arial, sans-serif;
+}
+
+html {
+    background-color: #FFF;
+    overflow-y: scroll;
+}
+
+/**
+* Layout for the main page elements
+*/
+#wrapper {
+    margin: 0 auto;
+    width: 960px;
+    padding: 0px;
+}
+
+/**
+* Layout for header
+*/
+#header {
+    position: relative;
+    padding-top: 40px;
+    margin-bottom: 40px;
+}
+
+.sitetitle {
+    position: absolute;
+    top: 40px;
+    left: 130px;
+    font-size: 48px;
+}
+
+.siteslogan {
+    position: absolute;
+    top: 105px;
+    left: 130px;
+    font-style: italic;
+    color: #666;
+}
+
+.navbar {
+    display: block;
+    clear: both;
+    font-family: arial, sans-serif;
+    padding: 5px;
+    background-color: #c6d5e8;
+    border-radius: 4px;
+    box-shadow: 0 2px 2px #555;
+    color: #152a44;
+}
+
+.navbar a {
+    padding: 5px 19px;
+    /*border-radius: 4px;*/
+    text-decoration: none;
+}
+
+.navbar a:link {
+    color: #152a44;
+}
+
+.navbar a:hover, .selected {
+    background: #152a44;
+    border-radius: 2px;
+    color: #fefefe !important;
+}
+
+.navbar a:visited {
+    color: #152a44;
+}
+
+/**
+* Layout for main
+*/
+#main {
+    margin-top: 40px;
+    min-height: 20em;
+}
+
+h1 {
+    font-size: x-large;
+    font-weight: normal;
+    text-transform: uppercase;
+    border-bottom: 1px solid;
+}
+
+h2 {
+    font-size: larger;
+    font-weight: normal;
+}
+
+article {
+    width: 80%;
+    padding-right: 20px;
+    border-right: 1px solid #999;
+}
+
+div.article_text {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/**
+* Layout for footer
+*/
+#footer {
+    margin: 0 auto;
+    margin-top: 10px;
+    padding-top: 15px;
+    border-top: 1px solid #660000;
+    padding-bottom: 20px;
+}
+
+.sitefooter {
+    color: #666;
+}
+
+/**
+* article byline & signature
+* 
+*/
+
+footer.byline {
+    clear: both;
+    border-top: 1px dashed #999999;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-top: 1em;
+    font-size: small;
+    font-style:italic;
+}
+
+#byline_text {
+    margin-right: 2em;
+}
+
+footer.byline figure {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.left_float_with_margin {
+    float: left;
+    margin: 10px;
+}
