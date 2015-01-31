@@ -81,6 +81,7 @@ html {
 #main {
     margin-top: 40px;
     min-height: 20em;
+    line-height: 1.5em;
 }
 
 h1 {
