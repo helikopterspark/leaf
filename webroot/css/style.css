@@ -3,15 +3,11 @@
 */
 body {
     margin: 0;
-    background-color: #ffffff;
-    background-image: -ms-linear-gradient(top,  #D7E0EE,  #D7E0EE 10%, #FFF 70%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.0, #D7E0EE), color-stop(0.10, #D7E0EE), color-stop(0.80, #FFF)); 
-    background: -moz-linear-gradient(top,  #D7E0EE,  #D7E0EE 10%, #FFF 70%);
+    background: url("../img/bg.png") repeat-x scroll 0 0 #fff;
     font-family: arial, sans-serif;
 }
 
 html {
-    background-color: #FFF;
     overflow-y: scroll;
 }
 
