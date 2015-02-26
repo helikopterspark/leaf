@@ -299,7 +299,7 @@ EOD;
         $html = <<<EOD
     	<div style="width: 50%;">
     	<form method="get"><fieldset><legend>Ange antal spelare</legend>
-    	<p><label for="input1">Människa:</label><br/><select id="input1" name="noOfPlayers" />
+    	<p><label for="input1">Människa:</label><br/><select id="input1" name="noOfPlayers">
 EOD;
 
         foreach ($humans as $key => $value) {
@@ -311,7 +311,7 @@ EOD;
         }
 
         $html .= <<<EOD
-		</select></p><p><label for="input2">Dator:</label><br/><select id="input2" name="noOfRobots" />
+		</select></p><p><label for="input2">Dator:</label><br/><select id="input2" name="noOfRobots">
 EOD;
 
         foreach ($robots as $key => $value) {
