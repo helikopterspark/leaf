@@ -35,7 +35,7 @@ $leaf['main'] = <<<EOD
         <div class='article_text'>
         <p>I tärningsspelet 100 gäller det att samla ihop poäng för att komma först till 100.</p>
         </div>
-        <div style="height: 475px;">
+        <div style="height: 450px;">
         {$leaf['diceplay']}
         </div>
 </article>

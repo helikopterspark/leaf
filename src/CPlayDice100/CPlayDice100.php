@@ -249,7 +249,7 @@ EOD;
         foreach ($this->players as $value) {
             $html .= '<p>Spelare ' . $value->GetPlayerID() . ': ' . $value->GetPlayerScore() . ' poäng</p>';
         }
-        $html .= '<input type="submit" name="p" value="Börja om"></p></aside>';
+        $html .= '<input type="submit" name="p" value="Börja om"></aside>';
         $this->throwOrSaveMess = null; // Reset to keep state when switching pages
         return $html;
     }
@@ -283,7 +283,7 @@ EOD;
         }
         $this->diceplay .= $this->PrintResult();
 
-        $this->diceplay .= '</fieldset></form></div>';
+        $this->diceplay .= '</p></fieldset></form></div>';
     }
 
     /**
