@@ -169,11 +169,7 @@ class CPlayDice100 {
      */
     private function RestartGame() {
         unset($_SESSION['diceplay']);
-        $host = $_SERVER['HTTP_HOST'];
-        $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-        $extra = 'diceplay.php';
-        header("Location: http://$host$uri/$extra");
-        exit;
+        $this->ReloadPage();
     }
 
     /**
@@ -195,11 +191,7 @@ class CPlayDice100 {
         if ($this->last != 1 && !$this->gameover) {
             $this->SaveRound();
             $this->p = 'Spara';
-            $host = $_SERVER['HTTP_HOST'];
-            $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-            $extra = 'diceplay.php';
-            header("Location: http://$host$uri/$extra");
-            exit;
+            $this->ReloadPage();
         }
     }
 
@@ -329,4 +321,15 @@ EOD;
         return $html;
     }
 
+    /**
+    * Reload page
+    *
+    */
+	private function ReloadPage() {
+		$host = $_SERVER['HTTP_HOST'];
+        $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+        $extra = 'diceplay.php';
+        header("Location: http://$host$uri/$extra");
+        exit;
+	}
 }
