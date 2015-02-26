@@ -280,9 +280,9 @@ EOD;
         if ($this->nextplayer && !$this->gameover) {
             $this->diceplay .= '<input type="submit" name="p" value="Fortsätt"/>';
         }
-        $this->diceplay .= $this->PrintResult();
+        $this->diceplay .= '</p>' . $this->PrintResult();
 
-        $this->diceplay .= '</p></fieldset></form></div>';
+        $this->diceplay .= '</fieldset></form></div>';
     }
 
     /**
