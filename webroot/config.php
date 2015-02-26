@@ -52,7 +52,7 @@ $leaf['header'] = <<<EOD
 EOD;
 
 $leaf['footer'] = <<<EOD
-        <footer><span class='sidefooter'>Copyright (c) Carl Ramsell | <a href='http://validator.w3.org/unicorn/check?ucn_uri=referer&amp;ucn_task=conformance'>Unicorn</a></span></footer>
+        <footer><span class='sidefooter'>Copyright (c) 2015 Carl Ramsell | <a href='http://validator.w3.org/unicorn/check?ucn_uri=referer&amp;ucn_task=conformance'>Unicorn</a></span></footer>
 EOD;
 
 $leaf['byline'] = <<<EOD
@@ -74,6 +74,7 @@ $leaf['menu'] = array(
     'callback' => 'modifyNavbar',
     'items' => array(
         'home.php' => array('text' => 'Hem', 'url' => 'home.php', 'class' => null),
+        'diceplay.php' => array('text' => 'Tärningsspelet 100', 'url' => 'diceplay.php', 'class' => null),
         'report.php' => array('text' => 'Redovisning', 'url' => 'report.php', 'class' => null),
         'source.php' => array('text' => 'Källkod', 'url' => 'source.php', 'class' => null),
     ),
