@@ -46,7 +46,6 @@ class CPlayDice100 {
      * @return html page showing setup page or game board
      */
     public function PlayDice100() {
-        //session_destroy();
         // Initial setup - setup players or create player objects after setup
         if (!isset($_GET['setup']) && !$this->players) {
             $this->diceplay = $this->SetupPlayers();
@@ -249,7 +248,7 @@ EOD;
         foreach ($this->players as $value) {
             $html .= '<p>Spelare ' . $value->GetPlayerID() . ': ' . $value->GetPlayerScore() . ' poäng</p>';
         }
-        $html .= '<input type="submit" name="p" value="Börja om"></aside>';
+        $html .= '<input type="submit" name="p" value="Börja om"></form></aside>';
         $this->throwOrSaveMess = null; // Reset to keep state when switching pages
         return $html;
     }
