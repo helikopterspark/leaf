@@ -248,7 +248,7 @@ EOD;
         foreach ($this->players as $value) {
             $html .= '<p>Spelare ' . $value->GetPlayerID() . ': ' . $value->GetPlayerScore() . ' poäng</p>';
         }
-        $html .= '<input type="submit" name="p" value="Börja om"></form></aside>';
+        $html .= '<input type="submit" name="p" value="Börja om"></fieldset></form></aside>';
         $this->throwOrSaveMess = null; // Reset to keep state when switching pages
         return $html;
     }
