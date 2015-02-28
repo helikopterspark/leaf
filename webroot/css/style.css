@@ -96,10 +96,14 @@ h2 {
     font-weight: normal;
 }
 
+div.content {
+    border-right: 1px solid #999;
+}
+
 article {
     width: 80%;
-    padding-right: 20px;
     border-right: 1px solid #999;
+    padding-right: 20px;
 }
 
 div.article_text {
@@ -155,6 +159,27 @@ footer.byline figure {
 -------------------------------------------------------------- */
 #dice100 {
     width: 16%; float: right; text-align: left; font-size: smaller; padding-right: 5px;
+}
+
+/* aside for report
+-------------------------------------------------------------- */
+#report {
+    width: 16%; float: right; text-align: left; padding-right: 5px;
+}
+/* use custom image for list marker */
+#report ul li a {
+    display: list-item;
+    background-image: url(../favicon.ico);
+    background-repeat: no-repeat;
+    background-position: 0px 4px;
+    padding-left: 22px;
+}
+
+#report ul {
+    display: block;
+    list-style:none;
+    padding:0;
+    margin:0;
 }
 
 /* Success, info, notice and error/alert boxes

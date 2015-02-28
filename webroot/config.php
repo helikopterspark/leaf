@@ -75,6 +75,7 @@ $leaf['menu'] = array(
     'items' => array(
         'home.php' => array('text' => 'Hem', 'url' => 'home.php', 'class' => null),
         'diceplay.php' => array('text' => 'Tärningsspelet 100', 'url' => 'diceplay.php', 'class' => null),
+        'calendar.php' => array('text' => 'Kalender', 'url' => 'calendar.php', 'class' => null),
         'report.php' => array('text' => 'Redovisning', 'url' => 'report.php', 'class' => null),
         'source.php' => array('text' => 'Källkod', 'url' => 'source.php', 'class' => null),
     ),
