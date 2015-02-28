@@ -22,7 +22,7 @@ class CCalendar {
 		$this->monthName = $this->GetSwedishMonthName($month);
 	}
 
-	public function GetMonthNameAndYear() {
+	public function ShowCalendar() {
 		$html = '<img src="img/koenigsee/koenigsee-2.jpg" width="960" height="180" alt="Königsee"/>';
 		$html .= '<h1>' . $this->monthName . ' ';
 		$html .= $this->year . '</h1>';

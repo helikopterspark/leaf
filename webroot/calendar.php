@@ -33,13 +33,19 @@ if (isset($_SESSION['calendar'])) {
 	$_SESSION['calendar'] = $calendar;
 }
 
-$leaf['calendar'] = $calendar->GetMonthNameAndYear();
+$leaf['calendar'] = $calendar->ShowCalendar();
 
 $leaf['main'] = <<<EOD
         {$leaf['calendar']}
-        <p><a href=calendar.php?p=prevM>Föregående månad</a></p>
-		<p><a href=calendar.php?p=reset>Innevarande månad</a></p>
-		<p><a href=calendar.php?p=nextM>Nästa månad</a></p>
+        <div class="left">
+        	<p><a href=calendar.php?p=prevM>Föregående månad</a></p>
+        </div>
+		<div class="right">
+			<p style="text-align: right;"><a href=calendar.php?p=nextM>Nästa månad</a></p>
+		</div>
+		<div class="right">
+			<p style="text-align: center;"><a href=calendar.php?p=reset>Innevarande månad</a></p>
+		</div>
 EOD;
 
 include(LEAF_THEME_PATH);

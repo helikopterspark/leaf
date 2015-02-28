@@ -4,3 +4,13 @@ div.month {
     border-right: 1px solid black;
     border-left: 1px solid black;
 }
+
+.right {
+	float: right;
+	width: 33%;
+}
+
+.left {
+	float: left;
+	width: 33%;
+}
