@@ -38,13 +38,13 @@ $leaf['calendar'] = $calendar->ShowCalendar();
 $leaf['main'] = <<<EOD
         {$leaf['calendar']}
         <div class="left">
-        	<p><a href=calendar.php?p=prevM>Föregående månad</a></p>
+        	<p><a href="calendar.php?p=prevM">Föregående månad</a></p>
         </div>
 		<div class="right">
-			<p style="text-align: right;"><a href=calendar.php?p=nextM>Nästa månad</a></p>
+			<p style="text-align: right;"><a href="calendar.php?p=nextM">Nästa månad</a></p>
 		</div>
 		<div class="right">
-			<p style="text-align: center;"><a href=calendar.php?p=reset>Innevarande månad</a></p>
+			<p style="text-align: center;"><a href="calendar.php?p=reset">Innevarande månad</a></p>
 		</div>
 EOD;
 

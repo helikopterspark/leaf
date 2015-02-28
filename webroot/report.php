@@ -33,7 +33,7 @@ $leaf['main'] = <<<EOD
         <article>
         {$leaf['reports']}
         {$leaf['byline']}
-        <article>
+        </article>
 EOD;
 
 // Finally leave it all to the rendering phase of Leaf
