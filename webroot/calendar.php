@@ -6,7 +6,7 @@
  */
 // Include essential condig-file which also creates the $leaf variable with its defaults
 include (__DIR__ . '/config.php');
-setlocale(LC_TIME, "sv_SE.UTF-8");
+setlocale(LC_TIME, "sv_SE.utf8");
 // Do it and store it all in variables in the Leaf container
 $leaf['title'] = "Kalender";
 $date = 'Dagens datum: ' . strftime("%A, %e, %B, %Y") . ', vecka ' . strftime("%V") . '.';
