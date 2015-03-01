@@ -15,7 +15,7 @@ div.month {
 	width: 33%;
 }
 
-div.weekdays, div.day, div.holiday {
+div.weekdays, div.day, div.today {
 	width: 120px;
     float: left;
     border-right: 1px solid black;
@@ -31,7 +31,7 @@ div.headingweekdays {
     overflow: auto;
 }
 
-div.day, div.holiday {
+div.day, div.today {
 	height: 35px;
 }
 
@@ -54,5 +54,5 @@ span.outsidemonth {
 }
 
 div.today {
-	background-color: green;
+	background: #c6d5e8;
 }

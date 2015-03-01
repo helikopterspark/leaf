@@ -41,7 +41,7 @@ class CCalendar {
 		} else {
 			$prev = $this->GetSwedishMonthName($this->month - 1);
 		}
-		$html = '<img src="img/koenigsee/koenigsee-2.jpg" width="960" height="180" alt="Königsee"/>';
+		$html = '<img src="img/calendarpics/' .$this->month. '.jpg" width="960" height="180" alt="Kalenderbild"/>';
 		$html .= '<div style="height: 400px;"><h1>' . $this->monthName . ' ';
 		$html .= $this->year . '</h1>';
 

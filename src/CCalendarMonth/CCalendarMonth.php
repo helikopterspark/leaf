@@ -4,13 +4,13 @@
 *
 */
 class CCalendarMonth {
+	/**
+	* Properties
+	*
+	*/
 	private $month;
 	private $year;
 	private $date;
-	private $firstWeek;
-	private $lastWeek;
-	private $firstDayOfWeek;
-	private $lastDayOfWeek;
 
 	/**
 	* Constructor
@@ -33,8 +33,6 @@ class CCalendarMonth {
 		$day = null;
 		$counter = 1;
 
-		$this->firstWeek = date("W", strtotime($this->date->format('Y-m-01')));
-		$this->lastWeek = date("W", strtotime($this->date->format('Y-m-t')));
 		// Get all week numbers for the month
 		$addWeeks = array();
 		while ($counter < date("d", strtotime($this->date->format('Y-m-t')))) {
@@ -45,6 +43,7 @@ class CCalendarMonth {
 		$weekNos = array_unique($addWeeks);	// Remove duplicates
 		$prevWeek = $weekNos[0];
 
+		// Render weeks with week numbers and days
 		foreach ($weekNos as $week) {
 			$tempYear = $this->year;
 			$html .= '<div class="week">' . $week . '</div>';
@@ -58,7 +57,12 @@ class CCalendarMonth {
 				$day = date('d', strtotime("$tempYear-W$week-$j"));
 				$notInMonth = date('m', strtotime("$tempYear-W$week-$j"));
 
-				$html .= '<div class="day">';
+				if ($day == date("j") && $this->month == date("n") && $this->year == date("Y") && $notInMonth == $this->month) {
+					$html .= '<div class="today">';
+				} else {
+					$html .= '<div class="day">';
+				}
+
 				if ($notInMonth != $this->month){
 					$html .= '<span class="outsidemonth">';
 				}
