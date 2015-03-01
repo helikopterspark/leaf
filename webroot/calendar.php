@@ -33,10 +33,6 @@ if (isset($_SESSION['calendar'])) {
 	$_SESSION['calendar'] = $calendar;
 }
 
-$leaf['calendar'] = $calendar->ShowCalendar();
-
-$leaf['main'] = <<<EOD
-        {$leaf['calendar']}
-EOD;
+$leaf['main'] = $calendar->ShowCalendar();
 
 include(LEAF_THEME_PATH);

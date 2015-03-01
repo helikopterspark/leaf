@@ -15,10 +15,11 @@ div.month {
 	width: 33%;
 }
 
-div.weekdays {
+div.weekdays, div.day, div.holiday {
 	width: 120px;
     float: left;
-    border-right: 1px solid black; 
+    border-right: 1px solid black;
+    border-bottom: 1px solid black; 
     padding: 5px;
     font-size: small;
     line-height: 1.0em;
@@ -26,16 +27,25 @@ div.weekdays {
 }
 
 div.headingweekdays {
-	border-bottom: 1px solid black;
     overflow: auto;
+}
+
+div.day, div.holiday {
+	height: 35px;
 }
 
 div.week {
     float: left;
     width: 43px;
+    font-size: small;
+    font-style: italic;
     text-align: center;
 } 
 
-div.holiday {
+div.holiday, div.red {
 	color: red;
+}
+
+div.today {
+	background-color: green;
 }

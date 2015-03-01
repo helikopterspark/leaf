@@ -1,6 +1,6 @@
 <?php
 /**
-* Class for showing a calendar
+* Class for showing a Swedish calendar
 *
 */
 class CCalendar {
@@ -10,6 +10,7 @@ class CCalendar {
 	*/
 	private $year;
 	private $month;
+	private $monthHTML;
 	private $monthName;
 	private $p;
 	/**
@@ -28,6 +29,8 @@ class CCalendar {
 	* @return string of html
 	*/
 	public function ShowCalendar() {
+		$this->monthHTML = new CCalendarMonth($this->month, $this->year);
+
 		if ($this->month == 12) {
 			$next = $this->GetSwedishMonthName(1);
 		} else {
@@ -44,11 +47,11 @@ class CCalendar {
 
 		// Weekdays heading
         $html .= '<div class="headingweekdays">';
-        $html .= '<div class="week">v.</div>';
+        $html .= '<div class="week">V</div>';
         for ($i = 1; $i < 8; $i++) { 
         	$html .='<div class="weekdays">';
         	if ($i == 7) {
-        		$html .= '<div class="holiday">';
+        		$html .= '<div class="red">';
         		$html .= $this->GetSwedishDayName($i);
         		$html .= '</div>';
         	} else {
@@ -57,7 +60,7 @@ class CCalendar {
         	$html .='</div>';
         }
         $html .= '</div>';
-		
+		$html .= '<div>' . $this->monthHTML->GetMonthAsHTML() . '</div>';
 		$html .= <<<EOD
 		<div class="left">
         	<p><a href="calendar.php?p=prevM">&lt; {$prev}</a></p>

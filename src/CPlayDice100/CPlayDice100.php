@@ -62,6 +62,7 @@ class CPlayDice100 {
                 }
             }
         }
+
         // Detect button press
         if (isset($_GET['p'])) {
             $this->p = $_GET['p'];
@@ -182,6 +183,7 @@ class CPlayDice100 {
             $this->ThrowDice();
             $this->throwSeries[] = $this->last;
         }
+
         // With 10 points, decide after each throw whether to stop or throw again
         while (rand(1,2) != 2 && $this->last != 1 && !$this->gameover) {
         	$this->ThrowDice();
@@ -328,7 +330,7 @@ EOD;
 	private function ReloadPage() {
 		$host = $_SERVER['HTTP_HOST'];
         $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-        $extra = 'diceplay.php';
+        $extra = 'diceplay.php?p='. $this->p;
         header("Location: http://$host$uri/$extra");
         exit;
 	}
