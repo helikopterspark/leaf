@@ -73,7 +73,7 @@ class CCalendarMonth {
 				}
 				$html .= (int)$day;
 				// close span tags
-				for ($k = 1; $k < $spancounter; $k++) {
+				for ($k = 0; $k < $spancounter; $k++) {
 					$html.= '</span>';
 				}
 				$html .= '</div>';
