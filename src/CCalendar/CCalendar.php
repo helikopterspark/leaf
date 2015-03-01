@@ -12,7 +12,11 @@ class CCalendar {
 	private $month;
 	private $monthHTML;
 	private $monthName;
-	private $p;
+	private $prevYear;
+	private $prevMonth;
+	private $nextYear;
+	private $nextMonth;
+
 	/**
 	* Constructor
 	*
@@ -31,6 +35,8 @@ class CCalendar {
 	public function ShowCalendar() {
 		$this->monthHTML = new CCalendarMonth($this->month, $this->year);
 
+		$this->GotoPrev();
+		$this->GotoNext();
 		if ($this->month == 12) {
 			$next = $this->GetSwedishMonthName(1);
 		} else {
@@ -41,6 +47,8 @@ class CCalendar {
 		} else {
 			$prev = $this->GetSwedishMonthName($this->month - 1);
 		}
+
+		// Build html
 		$html = '<img src="img/calendarpics/' .$this->month. '.jpg" width="960" height="180" alt="Kalenderbild"/>';
 		$html .= '<div style="height: 400px;"><h1>' . $this->monthName . ' ';
 		$html .= $this->year . '</h1>';
@@ -63,13 +71,13 @@ class CCalendar {
 		$html .= '<div>' . $this->monthHTML->GetMonthAsHTML() . '</div>';
 		$html .= <<<EOD
 		<div class="left">
-        	<p><a href="calendar.php?p=prevM">&lt; {$prev}</a></p>
+			<p><a href="?year={$this->prevYear}&month={$this->prevMonth}">&lt; {$prev}</a></p>
         </div>
 		<div class="right">
-			<p style="text-align: right;"><a href="calendar.php?p=nextM">{$next} ></a></p>
+			<p style="text-align: right;"><a href="?year={$this->nextYear}&month={$this->nextMonth}">{$next} ></a></p>
 		</div>
 		<div class="right">
-			<p style="text-align: center;"><a href="calendar.php?p=reset">Innevarande månad</a></p>
+			<p style="text-align: center;"><a href="calendar.php">Innevarande månad</a></p>
 		</div></div>
 EOD;
 		return $html;
@@ -79,28 +87,28 @@ EOD;
 	* Step to next month
 	*
 	*/
-	public function GotoPrev() {
+	private function GotoPrev() {
 		if ($this->month == 1) {
-		 	$this->month = 12;
-		 	$this->year--;
+		 	$this->prevMonth = 12;
+		 	$this->prevYear = $this->year - 1;
 		 } else {
-		 	$this->month--;
+		 	$this->prevMonth = $this->month - 1;
+		 	$this->prevYear = $this->year;
 		 }
-		$this->monthName = $this->GetSwedishMonthName($this->month);
 	}
 
 	/**
 	* Step to previous month
 	*
 	*/
-	public function GotoNext() {
+	private function GotoNext() {
 		if ($this->month == 12) {
-		 	$this->month = 1;
-		 	$this->year++;
+		 	$this->nextMonth = 1;
+		 	$this->nextYear = $this->year + 1;
 		 } else {
-		 	$this->month++;
+		 	$this->nextMonth = $this->month + 1;
+		 	$this->nextYear = $this->year;
 		 }
-		$this->monthName = $this->GetSwedishMonthName($this->month);
 	}
 
 	/**

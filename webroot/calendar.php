@@ -12,25 +12,13 @@ $leaf['stylesheets'][] = 'css/calendar.css';
 // Do it and store it all in variables in the Leaf container
 $leaf['title'] = "Kalender";
 
-$p = null;
-if (isset($_GET['p'])) {
-	$p = $_GET['p'];
-}
-
-if($p == 'reset') {
-	unset($_SESSION['calendar']);
-}
-
-if (isset($_SESSION['calendar'])) {
-	$calendar = $_SESSION['calendar'];
-	if ($p == 'nextM') {
-		$calendar->GotoNext();
-	} else if($p == 'prevM') {
-		$calendar->GotoPrev();
-	}
+if (isset($_GET['year']) && isset($_GET['month'])) {
+	$year = $_GET['year'];
+	$month = $_GET['month'];
+	$calendar = new CCalendar($month, $year);
 } else {
 	$calendar = new CCalendar(date("n"), date("Y"));
-	$_SESSION['calendar'] = $calendar;
+	//$_SESSION['calendar'] = $calendar;
 }
 
 $leaf['main'] = $calendar->ShowCalendar();
