@@ -68,7 +68,7 @@ class CCalendar {
         	$html .='</div>';
         }
         $html .= '</div>';
-		$html .= '<div>' . $this->monthHTML->GetMonthAsHTML() . '</div>';
+		$html .= '<div style="height: 276px;">' . $this->monthHTML->GetMonthAsHTML() . '</div>';
 		$html .= <<<EOD
 		<div class="left">
 			<p><a href="?year={$this->prevYear}&amp;month={$this->prevMonth}">&lt; {$prev}</a></p>
