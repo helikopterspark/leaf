@@ -71,10 +71,10 @@ class CCalendar {
 		$html .= '<div>' . $this->monthHTML->GetMonthAsHTML() . '</div>';
 		$html .= <<<EOD
 		<div class="left">
-			<p><a href="?year={$this->prevYear}&month={$this->prevMonth}">&lt; {$prev}</a></p>
+			<p><a href="?year={$this->prevYear}&amp;month={$this->prevMonth}">&lt; {$prev}</a></p>
         </div>
 		<div class="right">
-			<p style="text-align: right;"><a href="?year={$this->nextYear}&month={$this->nextMonth}">{$next} ></a></p>
+			<p style="text-align: right;"><a href="?year={$this->nextYear}&amp;month={$this->nextMonth}">{$next} ></a></p>
 		</div>
 		<div class="right">
 			<p style="text-align: center;"><a href="calendar.php">Innevarande månad</a></p>
