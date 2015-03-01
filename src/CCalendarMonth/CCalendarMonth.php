@@ -56,12 +56,18 @@ class CCalendarMonth {
 			for ($j = 1; $j <= 7; $j++) {
 				
 				$day = date('d', strtotime("$tempYear-W$week-$j"));
+				$notInMonth = date('m', strtotime("$tempYear-W$week-$j"));
 
-				if ($j == 7) {
-					$html .= '<div class="holiday">' . (int)$day . '</div>';
-				} else {
-					$html .= '<div class="day">' . (int)$day . '</div>';
+				$html .= '<div class="day">';
+				if ($notInMonth != $this->month){
+					$html .= '<span class="outsidemonth">';
 				}
+				if ($j == 7) {
+					$html .= '<span class="holiday">';
+				} else {
+					$html .= '<span>';
+				}
+				$html .= (int)$day . '</span></div>';
 			}
 			$prevWeek = $week;
 		}

@@ -22,6 +22,7 @@ div.weekdays, div.day, div.holiday {
     border-bottom: 1px solid black; 
     padding: 5px;
     font-size: small;
+    font-weight: bold;
     line-height: 1.0em;
     text-align: right;
 }
@@ -42,8 +43,14 @@ div.week {
     text-align: center;
 } 
 
-div.holiday, div.red {
+span.holiday, span.red {
 	color: red;
+}
+
+span.outsidemonth {
+	font-style: italic;
+	font-size: smaller;
+	color: #999;
 }
 
 div.today {

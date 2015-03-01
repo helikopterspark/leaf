@@ -51,9 +51,9 @@ class CCalendar {
         for ($i = 1; $i < 8; $i++) { 
         	$html .='<div class="weekdays">';
         	if ($i == 7) {
-        		$html .= '<div class="red">';
+        		$html .= '<div><span class="red">';
         		$html .= $this->GetSwedishDayName($i);
-        		$html .= '</div>';
+        		$html .= '</span></div>';
         	} else {
         		$html .= $this->GetSwedishDayName($i);
         	}
