@@ -22,11 +22,37 @@ class CCalendar {
 		$this->monthName = $this->GetSwedishMonthName($month);
 	}
 
+	/**
+	* Show calendar for a given month
+	*
+	* @return string of html
+	*/
 	public function ShowCalendar() {
+		if ($this->month == 12) {
+			$next = $this->GetSwedishMonthName(1);
+		} else {
+			$next = $this->GetSwedishMonthName($this->month + 1);
+		}
+		if ($this->month == 1) {
+			$prev = $this->GetSwedishMonthName(12);
+		} else {
+			$prev = $this->GetSwedishMonthName($this->month - 1);
+		}
 		$html = '<img src="img/koenigsee/koenigsee-2.jpg" width="960" height="180" alt="Königsee"/>';
 		$html .= '<h1>' . $this->monthName . ' ';
 		$html .= $this->year . '</h1>';
 		
+		$html .= <<<EOD
+		<div class="left">
+        	<p><a href="calendar.php?p=prevM">&lt; {$prev}</a></p>
+        </div>
+		<div class="right">
+			<p style="text-align: right;"><a href="calendar.php?p=nextM">{$next} ></a></p>
+		</div>
+		<div class="right">
+			<p style="text-align: center;"><a href="calendar.php?p=reset">Innevarande månad</a></p>
+		</div>
+EOD;
 		return $html;
 	}
 

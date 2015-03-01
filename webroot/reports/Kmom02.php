@@ -1,7 +1,8 @@
 <?php
 // Report for kmom02
 $html = <<<EOD
-	<h2 id='Kmom02'>Kmom02</h2><div class='article_text'>
+	<h2 id='Kmom02'>Kmom02</h2>
+	<div class='article_text'>
  	<p>Det första kursmomentet har löpt ganska smärtfritt eftersom jag precis har avslutat förra kursen och hade saker färskt i minnet. Det var dock en hel del att göra och tog längre tid än jag först trodde. Jag skummade igenom litteraturen eftersom jag läste kapitlen mer grundligt i höstas. Jag jobbade däremot igenom guiden "20 steg..." mer noggrant och det var en bra repetition. Det var kanske inget nytt men en del saker från förra kursen fick en bättre förklaring.</p>
 	<p>Sedan gav jag mig på Anax-artikeln och byggde upp mitt ramverk. Det fick heta Leaf, mest för att jag hade en lämplig ikon för loggan. Men också för att ordet också syftar på blad eller sidor. Jag har följt upplägget i artikeln eftersom det var rekommendationen inför kommande kursmoment.</p>
 	<p>Skapandet av ramverket flöt på bra men det som orsakade en del huvudbry var den dynamiska menyn. Jag följde artikeln men fick tänka till lite för att anpassa koden till strukturen på sidorna i ramverket. Det fanns en följdartikel med en mer direkt passande lösning men nu försökte jag lösa det själv utifrån första exemplet. Jag lade in CNavigation som en klass eftersom det ändå ska handla om objektorientering i den här kursen. Det blev en fungerande lösning till slut. Kanske får jag revidera den senare, det återstår att se.</p>
