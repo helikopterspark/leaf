@@ -32,6 +32,7 @@ class CCalendarMonth {
 		$html = null;
 		$day = null;
 		$counter = 1;
+		$spancounter = 0;
 
 		// Get all week numbers for the month
 		$addWeeks = array();
@@ -65,13 +66,18 @@ class CCalendarMonth {
 
 				if ($notInMonth != $this->month){
 					$html .= '<span class="outsidemonth">';
+					$spancounter++;
 				}
 				if ($j == 7) {
 					$html .= '<span class="holiday">';
-				} else {
-					$html .= '<span>';
+					$spancounter++;
 				}
-				$html .= (int)$day . '</span></div>';
+				$html .= (int)$day;
+				// close span tags
+				for ($k = 1; $k < $spancounter; $k++) {
+					$html.= '</span>';
+				}
+				$html .= '</div>';
 			}
 			$prevWeek = $week;
 		}
