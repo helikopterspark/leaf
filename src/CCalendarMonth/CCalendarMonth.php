@@ -32,7 +32,6 @@ class CCalendarMonth {
 		$html = null;
 		$day = null;
 		$counter = 1;
-		$spancounter = 0;
 
 		// Get all week numbers for the month
 		$addWeeks = array();
@@ -54,7 +53,7 @@ class CCalendarMonth {
 				$tempYear--;
 			}
 			for ($j = 1; $j <= 7; $j++) {
-				
+				$spancounter = 0;
 				$day = date('d', strtotime("$tempYear-W$week-$j"));
 				$notInMonth = date('m', strtotime("$tempYear-W$week-$j"));
 
