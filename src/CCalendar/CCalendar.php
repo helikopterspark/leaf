@@ -39,8 +39,24 @@ class CCalendar {
 			$prev = $this->GetSwedishMonthName($this->month - 1);
 		}
 		$html = '<img src="img/koenigsee/koenigsee-2.jpg" width="960" height="180" alt="Königsee"/>';
-		$html .= '<h1>' . $this->monthName . ' ';
+		$html .= '<div style="height: 400px;"><h1>' . $this->monthName . ' ';
 		$html .= $this->year . '</h1>';
+
+		// Weekdays heading
+        $html .= '<div class="headingweekdays">';
+        $html .= '<div class="week">v.</div>';
+        for ($i = 1; $i < 8; $i++) { 
+        	$html .='<div class="weekdays">';
+        	if ($i == 7) {
+        		$html .= '<div class="holiday">';
+        		$html .= $this->GetSwedishDayName($i);
+        		$html .= '</div>';
+        	} else {
+        		$html .= $this->GetSwedishDayName($i);
+        	}
+        	$html .='</div>';
+        }
+        $html .= '</div>';
 		
 		$html .= <<<EOD
 		<div class="left">
@@ -51,7 +67,7 @@ class CCalendar {
 		</div>
 		<div class="right">
 			<p style="text-align: center;"><a href="calendar.php?p=reset">Innevarande månad</a></p>
-		</div>
+		</div></div>
 EOD;
 		return $html;
 	}
@@ -105,5 +121,23 @@ EOD;
 			"November",
 			"December");
 		return $swNames[$month - 1];
+	}
+
+	/**
+	* Get day name in Swedish
+	*
+	* @param int current day
+	* @return string with Swedish day name
+	*/
+	private function GetSwedishDayName($day) {
+		$swNames = array(
+			"Måndag",
+			"Tisdag",
+			"Onsdag",
+			"Torsdag",
+			"Fredag",
+			"Lördag",
+			"Söndag");
+		return $swNames[$day - 1];
 	}
 }

@@ -14,3 +14,28 @@ div.month {
 	float: left;
 	width: 33%;
 }
+
+div.weekdays {
+	width: 120px;
+    float: left;
+    border-right: 1px solid black; 
+    padding: 5px;
+    font-size: small;
+    line-height: 1.0em;
+    text-align: right;
+}
+
+div.headingweekdays {
+	border-bottom: 1px solid black;
+    overflow: auto;
+}
+
+div.week {
+    float: left;
+    width: 43px;
+    text-align: center;
+} 
+
+div.holiday {
+	color: red;
+}
