@@ -169,7 +169,7 @@ footer.byline figure {
 /* use custom image for list marker */
 #report ul li a {
     display: list-item;
-    background-image: url(../favicon.ico);
+    background-image: url(../img/favicon-16x16.png);
     background-repeat: no-repeat;
     background-position: 0px 4px;
     padding-left: 22px;
