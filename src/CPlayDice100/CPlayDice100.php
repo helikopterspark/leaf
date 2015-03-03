@@ -98,7 +98,7 @@ class CPlayDice100 {
                 }
                 break;
             case 'Fortsätt':
-            if ($this->last != 0) {
+            if ($this->last != 0 && !$this->gameover) {
                     $this->GotoNextPlayer();
                 }
                 break;
