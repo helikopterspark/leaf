@@ -88,7 +88,7 @@ class CPlayDice100 {
         // Detect button press and choose appropriate action
         switch ($this->p) {
             case 'Kasta':
-                if ($this->last != 1) { // To prevent manual reload cheat
+                if ($this->last != 1 && !$this->gameover) { // To prevent manual reload cheat
                     $this->ThrowDice();
                 }
                 break;
