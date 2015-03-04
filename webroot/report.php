@@ -6,7 +6,6 @@
  */
 // Include essential condig-file which also creates the $leaf variable with its defaults
 include (__DIR__ . '/config.php');
-include (__DIR__ . '/../src/functions_files.php');
 $path = (__DIR__) . '/reports/';
 
 $leaf['reports'] = null;
@@ -18,8 +17,8 @@ foreach ($reportFiles as $reportFile) {
 }
 
 $html = '<ul>';
-foreach ($reportList as $report) {
-	$html .= '<li><a href="#' . $report . '">' . $report . '</a></li>';
+foreach ($reportList as $reportLink) {
+	$html .= '<li><a href="#' . $reportLink . '">' . $reportLink . '</a></li>';
 }
 $html .= '</ul>';
 // Do it and store it all in variables in the Leaf container
