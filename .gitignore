@@ -17,3 +17,8 @@ Thumbs.db
 # NetBeans private settings #
 #############################
 nbproject/private/private.xml
+
+# Exercise files #
+##################
+webroot/exercise/*.*
+webroot/kmom03sql/*.*

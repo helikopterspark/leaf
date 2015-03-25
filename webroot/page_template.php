@@ -4,7 +4,7 @@
  * This a Leaf page controller
  * 
  */
-// Include essential condig-file which also creates the $leaf variable with its defaults
+// Include essential config-file which also creates the $leaf variable with its defaults
 include (__DIR__ . '/config.php');
 
 // Do it and store it all in variables in the Leaf container

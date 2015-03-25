@@ -18,7 +18,6 @@ if (isset($_GET['year']) && isset($_GET['month'])) {
 	$calendar = new CCalendar($month, $year);
 } else {
 	$calendar = new CCalendar(date("n"), date("Y"));
-	//$_SESSION['calendar'] = $calendar;
 }
 
 $leaf['main'] = $calendar->ShowCalendar();

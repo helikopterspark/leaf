@@ -15,7 +15,7 @@
             <div id="header"><?= $header ?></div>
 
             <?php if (isset($menu)): ?>
-                <div id='menu'><?= CNavigation::GenerateMenu($menu, $menu['class']) ?></div>
+                <div id='menu'><?= CNavigation::GenerateMenu($menu) ?></div>
             <?php endif; ?>
 
             <div id="main"><?= $main ?></div>

@@ -66,19 +66,47 @@ $leaf['byline'] = <<<EOD
 EOD;
 
 /**
+ * Settings for the database.
+ *
+ */
+define('DB_USER', 'carb14');
+define('DB_PASSWORD', '80YD}3Pl');
+//$leaf['database']['dsn'] = 'mysql:host=localhost;dbname=Movie;';
+$leaf['database']['dsn'] = 'mysql:host=blu-ray.student.bth.se;dbname=carb14;';
+$leaf['database']['username'] = DB_USER;
+$leaf['database']['password'] = DB_PASSWORD;
+$leaf['database']['driver_options'] = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'UTF8'");
+
+/**
  * Nav menu
  * 
  */
 $leaf['menu'] = array(
     'class' => 'navbar',
-    'callback' => 'modifyNavbar',
+    //'callback' => 'modifyNavbar',
     'items' => array(
-        'home.php' => array('text' => 'Hem', 'url' => 'home.php', 'class' => null),
-        'diceplay.php' => array('text' => 'Tärningsspelet 100', 'url' => 'diceplay.php', 'class' => null),
-        'calendar.php' => array('text' => 'Kalender', 'url' => 'calendar.php', 'class' => null),
-        'report.php' => array('text' => 'Redovisning', 'url' => 'report.php', 'class' => null),
-        'source.php' => array('text' => 'Källkod', 'url' => 'source.php', 'class' => null),
+        'home' => array('text' => 'Hem', 'url' => 'home.php', 'title' => 'Hem'),
+        'dice' => array('text' => 'Tärningsspelet 100', 'url' => 'diceplay.php', 'title' => 'Tärningsspelet 100'),
+        'calendar' => array('text' => 'Kalender', 'url' => 'calendar.php', 'title' => 'Kalender'),
+        'movies' => array('text' => 'FilmDB', 'url' => 'movie_search.php', 'title' => 'FilmDB'),
+        'login' => array('text' => 'Login', 'url' => 'login.php', 'title' => 'Login',
+            'submenu' => array(
+                'class' => 'submenu',
+                'items' => array(
+                    'logout' => array('text' => 'Logout', 'url' => 'logout.php', 'title' => 'Logout'),
+                    'status' => array('text' => 'Status', 'url' => 'status.php', 'title' => 'Status'),
+                ),
+            ),
+        ),
+        'report' => array('text' => 'Redovisning', 'url' => 'report.php', 'title' => 'Redovisning'),
+        'source' => array('text' => 'Källkod', 'url' => 'source.php', 'title' => 'Källkod'),
     ),
+    // This is the callback tracing the current selected menu item base on scriptname
+    'callback' => function($url) {
+        if (basename($_SERVER['SCRIPT_FILENAME']) == $url) {
+            return true;
+        }
+    }
 );
 
 /**

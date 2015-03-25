@@ -1,0 +1,24 @@
+ /**
+ * Style for table
+ */
+
+table {
+  width: 100%;
+}
+ 
+/*table,
+th,*/
+td {
+  border: 1px solid #ccc;
+  padding-left: 10px;
+}
+
+.rows {
+  text-align: right;
+  font-size: small;
+}
+
+.pages {
+  text-align: center;
+  font-size: small;
+}

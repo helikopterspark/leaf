@@ -46,6 +46,11 @@ html {
 
 .navbar {
     display: block;
+}
+
+.navbar ul {
+    list-style: none; 
+    margin: 0; 
     clear: both;
     font-family: arial, sans-serif;
     padding: 5px;
@@ -55,20 +60,63 @@ html {
     color: #152a44;
 }
 
+.navbar li {
+  display: inline-block;
+  position: relative;
+}
+
 .navbar a {
+    white-space: nowrap;
     padding: 5px 19px;
-    /*border-radius: 4px;*/
     text-decoration: none;
+    color: inherit;
+}
+
+/* Display the submenu when hovering the list element, absolute positioning */
+.navbar li:hover ul {
+  left: 0;
+  line-height: 2.0em;
+  border-radius: 2px;
+  box-shadow: 0 2px 2px #555;
 }
 
 .navbar a:link {
     color: #152a44;
 }
 
-.navbar a:hover, .selected {
+.navbar li.selected-parent a,
+.navbar li.selected a {
     background: #152a44;
     border-radius: 2px;
+    color: #fefefe;
+}
+
+.navbar li li.selected a {
+    background: #152a44 !important;
+    border-radius: 2px;
     color: #fefefe !important;
+}
+
+.navbar li li a {
+    background-color: #c6d5e8 !important;
+    color: #152a44 !important;
+}
+
+
+/* New - style items of the submenu when hovering and selected */
+.navbar a:hover,
+.navbar li li a:hover {
+    background: #152a44 !important;
+    border-radius: 2px;
+    color: #fefefe !important;
+}
+
+/* New - to style the submenu, start by hiding it using absolute positioning */
+.navbar ul ul {
+  background-color: #c6d5e8; 
+  position: absolute; 
+  left: -9999px; 
+  z-index: 2;
 }
 
 .navbar a:visited {
@@ -120,6 +168,7 @@ div.article_text {
     padding-top: 15px;
     border-top: 1px solid #660000;
     padding-bottom: 20px;
+    color: #888;
 }
 
 .sitefooter {
