@@ -33,7 +33,7 @@ class CUser {
      * @param string $password
      */
     public function Login($user, $password) {
-        $sql = "SELECT acronym, name FROM User WHERE acronym = ? AND password = md5(concat(?, salt))";
+        $sql = "SELECT acronym, name FROM USER WHERE acronym = ? AND password = md5(concat(?, salt))";
         $credentials = array($user, $password);
         $res = $this->db->ExecuteSelectQueryAndFetchAll($sql, $credentials);
         if (isset($res[0])) {
