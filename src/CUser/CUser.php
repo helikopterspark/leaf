@@ -21,8 +21,6 @@ class CUser {
     public function __construct($optionsDB) {
         if (!$this->IsAuthenticated()) {
             $this->db = new CDatabase($optionsDB);
-        } else {
-            $this->acronym = $_SESSION['user']->acronym;
         }
     }
 
@@ -57,7 +55,7 @@ class CUser {
     public function IsAuthenticated() {
         // Check if user is authenticated.
         $this->acronym = isset($_SESSION['user']) ? $_SESSION['user']->acronym : null;
-        return $this->acronym;
+        return $this->acronym;  // will have a value (=true) or be null (=false)
     }
 
     /**
