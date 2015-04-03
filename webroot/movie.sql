@@ -1,6 +1,6 @@
-CREATE DATABASE IF NOT EXISTS Movie;
+-- CREATE DATABASE IF NOT EXISTS Movie;
  
-USE Movie;
+-- USE Movie;
 
 SET NAMES 'utf8';
 

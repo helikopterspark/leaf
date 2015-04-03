@@ -22,3 +22,7 @@ td {
   text-align: center;
   font-size: small;
 }
+
+.arrow {
+    text-decoration: none;
+}
