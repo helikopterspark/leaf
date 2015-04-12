@@ -102,7 +102,7 @@ class CTextFilter
      */
     public function markdown($text)
     {
-        require_once __DIR__ . "/php-markdown/Michelf/MarkdownExtra.inc.php";
+        require_once __DIR__ . "/phpmarkdown/Michelf/MarkdownExtra.inc.php";
         return \Michelf\MarkdownExtra::defaultTransform($text);
     }
     /**
