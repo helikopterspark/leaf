@@ -24,7 +24,7 @@ $leaf['main'] = <<<EOD
 <h3>Bitzucker Radio</h3>
 <img src='img/Icon-Small@3x.png' alt='App icon'/>
 <p>5000 radioströmmar i din iPhone. Ladda ned gratis från App store.</p>
-<a href='https://itunes.apple.com/se/app/bitzucker-radio-free-streaming/id968115492?l=sv&ls=1&mt=8'>
+<a href='https://itunes.apple.com/se/app/bitzucker-radio-free-streaming/id968115492'>
 <img src='img/Download_on_the_App_Store_Badge_SE_135x40.svg' width='135' height='40' alt='App store'/>
 </a></div>
 </aside>
