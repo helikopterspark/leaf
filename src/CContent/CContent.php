@@ -595,7 +595,7 @@ EOD;
              */
 
             if (isset($_POST['restore']) || isset($_GET['restore'])) {
-                $cmd = "$mysql -h{$host} -u{$login} -p{$password} < $sql 2>&1";
+                $cmd = "$mysql -h{$host} -u{$login} -p'{$password}' < $sql 2>&1";
                 $res = exec($cmd);
                 //$reset = "<p>Databasen är återställd via kommandot<br/><code>{$cmd}</code></p><p>{$res}</p>";
                 $reset = "<p>Databasen är återställd.</p>";
