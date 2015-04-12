@@ -285,7 +285,7 @@ class CContent {
         foreach ($res as $key => $value) {
             $list .= '<li>' . $value->type . ' (' . (!$value->available ? 'inte ' : null) . 'publicerad): '
                     . htmlentities($value->title, null, 'UTF-8') . ' (<a href="edit.php?id=' . $value->id
-                    . '"">uppdatera</a>, <a href="delete.php?id=' . $value->id . '">radera</a>, <a href="' . $this->getUrlToContent($value) . '">visa</a>)';
+                    . '">uppdatera</a>, <a href="delete.php?id=' . $value->id . '">radera</a>, <a href="' . $this->getUrlToContent($value) . '">visa</a>)';
             $list .= '</li>';
         }
         $list .= '</ul>';
