@@ -578,7 +578,7 @@ EOD;
 
             // Restore the database to its original settings BTH server
             $sql = 'reset.sql';
-            $mysql = '/usr/local/bin/mysql';
+            $mysql = '/usr/bin/mysql';
             $host = 'localhost';
             $login = DB_USER;
             $password = DB_PASSWORD;
@@ -595,9 +595,10 @@ EOD;
              */
 
             if (isset($_POST['restore']) || isset($_GET['restore'])) {
-                $cmd = "$mysql -h{$host} -u{$login} -p'{$password}'' < $sql 2>&1";
+                $cmd = "$mysql -h{$host} -u{$login} -p{$password} < $sql 2>&1";
                 $res = exec($cmd);
-                $reset = "<p>Databasen är återställd via kommandot<br/><code>{$cmd}</code></p><p>{$res}</p>";
+                //$reset = "<p>Databasen är återställd via kommandot<br/><code>{$cmd}</code></p><p>{$res}</p>";
+                $reset = "<p>Databasen är återställd.</p>";
             }
             $output = <<<EOD
     		<form method=post>
