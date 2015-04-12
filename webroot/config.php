@@ -54,7 +54,7 @@ EOD;
 $leaf['footer'] = <<<EOD
         <footer><span class='sidefooter'>Copyright (c) 2015 Carl Ramsell | <a href='http://validator.w3.org/unicorn/check?ucn_uri=referer&amp;ucn_task=conformance'>Unicorn</a>
         | <img src='img/Icon-Small.png' height='15' width='15' alt='App icon'/>
-        <a href='https://itunes.apple.com/se/app/bitzucker-radio-free-streaming/id968115492?l=sv&ls=1&mt=8'>
+        <a href='https://itunes.apple.com/se/app/bitzucker-radio-free-streaming/id968115492'>
 Bitzucker Radio för iPhone
 </a>
         </span>
