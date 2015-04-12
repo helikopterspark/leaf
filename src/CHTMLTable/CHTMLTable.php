@@ -107,8 +107,8 @@ class CHTMLTable {
      * @return string with links to order by column.
      */
     private function orderby($column) {
-        $nav = "<a href='" . $this->getQueryString(array('orderby' => $column, 'order' => 'asc')) . "'>&darr;</a>";
-        $nav .= "<a href='" . $this->getQueryString(array('orderby' => $column, 'order' => 'desc')) . "'>&uarr;</a>";
+        $nav = "<a class='arrow' href='" . $this->getQueryString(array('orderby' => $column, 'order' => 'asc')) . "'>&darr;</a>";
+        $nav .= "<a class='arrow' href='" . $this->getQueryString(array('orderby' => $column, 'order' => 'desc')) . "'>&uarr;</a>";
         return "<span class='orderby'>" . $nav . "</span>";
     }
 

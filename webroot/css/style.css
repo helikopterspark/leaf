@@ -1,3 +1,9 @@
+/* html5 elements
+----------------------------------------------------------------- 
+*/
+
+header,footer,nav,article,section,aside,figure,figcaption {display:block;}
+
 /**
 * General elements
 */
@@ -63,11 +69,12 @@ html {
 .navbar li {
   display: inline-block;
   position: relative;
+  /*font-size: small;*/
 }
 
 .navbar a {
     white-space: nowrap;
-    padding: 5px 19px;
+    padding: 5px 15px;
     text-decoration: none;
     color: inherit;
 }
@@ -113,14 +120,20 @@ html {
 
 /* New - to style the submenu, start by hiding it using absolute positioning */
 .navbar ul ul {
-  background-color: #c6d5e8; 
-  position: absolute; 
-  left: -9999px; 
+  background-color: #c6d5e8;
+  border-top: 1px solid #555;
+  position: absolute;
+  left: -9999px;
+  top: 23px;
   z-index: 2;
 }
 
 .navbar a:visited {
     color: #152a44;
+}
+
+.navbar li ul li {
+    min-width: 110px;
 }
 
 /**
@@ -165,10 +178,19 @@ div.article_text {
 #footer {
     margin: 0 auto;
     margin-top: 10px;
-    padding-top: 15px;
+    padding-top: 10px;
     border-top: 1px solid #660000;
     padding-bottom: 20px;
     color: #888;
+}
+
+#footer a {
+    text-decoration: none;
+    color: #152a44;
+}
+
+#footer a:hover {
+    color: red;
 }
 
 .sitefooter {
@@ -202,6 +224,12 @@ footer.byline figure {
 .left_float_with_margin {
     float: left;
     margin: 10px;
+}
+
+/* aside for AppAd
+-------------------------------------------------------------- */
+#appad {
+    width: 16%; max-height: 210px; float: right; text-align: center; font-size: smaller; padding-right: 5px;
 }
 
 /* aside for dice100

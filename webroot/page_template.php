@@ -17,7 +17,7 @@ $leaf['header'] = <<<EOD
 EOD;
 */
 $leaf['main'] = <<<EOD
-        <h1>Hej Världen</h1>
+        <h1>{$leaf['title']}</h1>
         <p>Detta är en exempelsida som visar hur Leaf ser ut och fungerar.</p>
 EOD;
 /*

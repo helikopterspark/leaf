@@ -31,7 +31,7 @@ class CUser {
      * @param string $password
      */
     public function Login($user, $password) {
-        $sql = "SELECT acronym, name FROM USER WHERE acronym = ? AND password = md5(concat(?, salt))";
+        $sql = "SELECT acronym, name, id FROM USER WHERE acronym = ? AND password = md5(concat(?, salt))";
         $credentials = array($user, $password);
         $res = $this->db->ExecuteSelectQueryAndFetchAll($sql, $credentials);
         if (isset($res[0])) {
@@ -74,6 +74,15 @@ class CUser {
      */
     public function GetName() {
         return $_SESSION['user']->name;
+    }
+
+    /**
+     * Get user ID
+     *
+     * @return int user ID
+     */
+    public function GetUserID() {
+        return $_SESSION['user']->id;
     }
 
 }

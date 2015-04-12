@@ -19,7 +19,7 @@ if (isset($_POST['login'])) {
 $leaf['title'] = "Login";
 
 if ($user->IsAuthenticated()) {
-    $output = "Du är redan inloggad som: {$user->GetAcronym()} ({$user->GetName()})";
+    $output = "Du är inloggad som: {$user->GetAcronym()} ({$user->GetName()})";
     $leaf['main'] = <<<EOD
 	<h1>{$leaf['title']}</h1>
 	<output><b>{$output}</b></output>

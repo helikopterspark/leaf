@@ -77,7 +77,7 @@ class CCalendar {
 			<p style="text-align: right;"><a href="?year={$this->nextYear}&amp;month={$this->nextMonth}">{$next} ></a></p>
 		</div>
 		<div class="right">
-			<p style="text-align: center;"><a href="calendar.php">Innevarande månad</a></p>
+			<p style="text-align: center;"><a href="?">Innevarande månad</a></p>
 		</div></div>
 EOD;
 		return $html;

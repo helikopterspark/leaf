@@ -47,11 +47,14 @@ class CNavigation {
 
                 if (isset($item['submenu'])) {
                     list($submenu, $selectedParent) = $createMenu($item['submenu']['items'], $callback);
+                    
                     $selectedParent = $selectedParent ? "selected-parent" : null;
                 }
 
                 // Check if the current menuitem is selected
-                $selected = $callback($item['url']) ? "selected" : null;
+                if (!$selectedParent) {
+                    $selected = $callback($item['url']) ? "selected" : null;
+                }
 
                 // Is there a class set for this item, then use it
                 $class = isset($item['class']) && !is_null($item['class']) ? $item['class'] : null;

@@ -20,6 +20,7 @@
 
             <div id="main"><?= $main ?></div>
             <div id="footer"><?= $footer ?></div>
+            <?php if(isset($debug)) echo $debug; ?>
         </div>
 
         <?php if (isset($jquery)): ?><script src='<?= $jquery ?>'></script><?php endif; ?>

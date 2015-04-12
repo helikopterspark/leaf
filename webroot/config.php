@@ -52,7 +52,13 @@ $leaf['header'] = <<<EOD
 EOD;
 
 $leaf['footer'] = <<<EOD
-        <footer><span class='sidefooter'>Copyright (c) 2015 Carl Ramsell | <a href='http://validator.w3.org/unicorn/check?ucn_uri=referer&amp;ucn_task=conformance'>Unicorn</a></span></footer>
+        <footer><span class='sidefooter'>Copyright (c) 2015 Carl Ramsell | <a href='http://validator.w3.org/unicorn/check?ucn_uri=referer&amp;ucn_task=conformance'>Unicorn</a>
+        | <img src='img/Icon-Small.png' height='15' width='15' alt='App icon'/>
+        <a href='https://itunes.apple.com/se/app/bitzucker-radio-free-streaming/id968115492?l=sv&ls=1&mt=8'>
+Bitzucker Radio för iPhone
+</a>
+        </span>
+        </footer>
 EOD;
 
 $leaf['byline'] = <<<EOD
@@ -72,7 +78,8 @@ EOD;
 /*
 define('DB_USER', 'root');
 define('DB_PASSWORD', 'root');
-$leaf['database']['dsn'] = 'mysql:host=localhost;dbname=Movie;';
+$leaf['database']['dsn'] = 'mysql:host=localhost;dbname=Kmom05oophp;';
+//$leaf['database']['dsn'] = 'mysql:host=localhost;dbname=Movie;';
 */
 define('DB_USER', 'carb14');
 define('DB_PASSWORD', '80YD}3Pl');
@@ -86,14 +93,42 @@ $leaf['database']['driver_options'] = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET
  * Nav menu
  * 
  */
+$ccontent = new CContent($leaf['database']);
+$blogmenu = $ccontent->getNavbarArray('post');
+$pagemenu = $ccontent->getNavbarArray('page');
+
 $leaf['menu'] = array(
     'class' => 'navbar',
     //'callback' => 'modifyNavbar',
     'items' => array(
         'home' => array('text' => 'Hem', 'url' => 'home.php', 'title' => 'Hem'),
-        'dice' => array('text' => 'Tärningsspelet 100', 'url' => 'diceplay.php', 'title' => 'Tärningsspelet 100'),
+        'dice' => array('text' => 'Tärning 100', 'url' => 'diceplay.php', 'title' => 'Tärning 100'),
         'calendar' => array('text' => 'Kalender', 'url' => 'calendar.php', 'title' => 'Kalender'),
         'movies' => array('text' => 'FilmDB', 'url' => 'movie_search.php', 'title' => 'FilmDB'),
+        'content' => array('text' => 'TextDB', 'url' => 'view.php', 'title' => 'TextDB',
+            'submenu' => array(
+                'class' => 'submenu',
+                'items' => array(
+                    'edit' => array('text' => 'Ny/Redigera', 'url' => 'edit.php', 'title' => 'Ny/Redigera'),
+                    'reset' => array('text' => 'Återställ', 'url' => 'reset.php', 'title' => 'Återställ'),
+                    'textfilter' => array('text' => 'Textfilter', 'url' => 'textfilter.php', 'title' => 'Textfilter'),
+                ),
+            ),
+        ),
+        'blog' => array('text' => 'Blogg', 'url' => 'blog.php', 'title' => 'Blogg',
+            'submenu' => array(
+                'class' => 'submenu',
+                'items' => $blogmenu
+                ),
+            ),
+        'page' => array('text' => 'Sidor', 'url' => 'page.php', 'title' => 'Sidor',
+            'submenu' => array(
+                'class' => 'submenu',
+                'items' => $pagemenu
+                ),
+            ),
+        'report' => array('text' => 'Redovisning', 'url' => 'report.php', 'title' => 'Redovisning'),
+        'source' => array('text' => 'Källkod', 'url' => 'source.php', 'title' => 'Källkod'),
         'login' => array('text' => 'Login', 'url' => 'login.php', 'title' => 'Login',
             'submenu' => array(
                 'class' => 'submenu',
@@ -103,12 +138,10 @@ $leaf['menu'] = array(
                 ),
             ),
         ),
-        'report' => array('text' => 'Redovisning', 'url' => 'report.php', 'title' => 'Redovisning'),
-        'source' => array('text' => 'Källkod', 'url' => 'source.php', 'title' => 'Källkod'),
     ),
     // This is the callback tracing the current selected menu item base on scriptname
     'callback' => function($url) {
-        if (basename($_SERVER['SCRIPT_FILENAME']) == $url) {
+        if (basename($_SERVER['SCRIPT_FILENAME']) == $url || basename($_SERVER['REQUEST_URI']) == $url) {
             return true;
         }
     }
