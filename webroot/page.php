@@ -26,7 +26,7 @@ $leaf['main'] = <<<EOD
 			{$pagecontent['data']}
 			<footer>
 				{$author}{$editLink}
-			</footer
+			</footer>
 		</article>
 EOD;
 
