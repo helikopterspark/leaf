@@ -575,7 +575,7 @@ EOD;
      */
     public function resetRestoreDB() {
         if ($this->acronym) {
-
+        	/*
             // Restore the database to its original settings BTH server
             $sql = 'reset.sql';
             $mysql = '/usr/bin/mysql';
@@ -583,8 +583,8 @@ EOD;
             $login = DB_USER;
             $password = DB_PASSWORD;
             $reset = null;
-
-            /*
+			*/
+            
               // Restore the database to its original settings local
               $sql = 'reset.sql';
               $mysql = '/Applications/XAMPP/xamppfiles/bin/mysql';
@@ -592,7 +592,7 @@ EOD;
               $login = DB_USER;
               $password = DB_PASSWORD;
               $reset = null;
-             */
+            
 
             if (isset($_POST['restore']) || isset($_GET['restore'])) {
                 $cmd = "$mysql -h{$host} -u{$login} -p{$password} < $sql 2>&1";

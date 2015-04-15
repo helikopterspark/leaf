@@ -1,7 +1,7 @@
 -- CREATE DATABASE IF NOT EXISTS Kmom05oophp;
 
--- USE Kmom05oophp;
-USE carb14;
+USE Kmom05oophp;
+-- USE carb14;
 
 SET NAMES 'utf8';
 
@@ -64,7 +64,7 @@ CREATE TABLE USER
     name VARCHAR(80),
     password CHAR(32),
     salt INT NOT NULL
-);
+) ENGINE INNODB CHARACTER SET utf8;
 
 INSERT INTO USER (acronym, name, salt) VALUES 
     ('doe', 'John/Jane Doe', unix_timestamp()),

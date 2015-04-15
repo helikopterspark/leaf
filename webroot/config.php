@@ -75,16 +75,16 @@ EOD;
  * Settings for the database.
  *
  */
-/*
+
 define('DB_USER', 'root');
 define('DB_PASSWORD', 'root');
 $leaf['database']['dsn'] = 'mysql:host=localhost;dbname=Kmom05oophp;';
 //$leaf['database']['dsn'] = 'mysql:host=localhost;dbname=Movie;';
-*/
+/*
 define('DB_USER', 'carb14');
 define('DB_PASSWORD', '80YD}3Pl');
 $leaf['database']['dsn'] = 'mysql:host=blu-ray.student.bth.se;dbname=' . DB_USER . ';';
-
+*/
 $leaf['database']['username'] = DB_USER;
 $leaf['database']['password'] = DB_PASSWORD;
 $leaf['database']['driver_options'] = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'UTF8'");
