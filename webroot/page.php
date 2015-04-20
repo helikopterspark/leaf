@@ -12,12 +12,12 @@ $pagecontent = $cpage->getPageContent();	// $pagecontent is an array
 $aside = $cpage->getLinklist('page', 'html');
 $editLink = $pagecontent['acronym'] ? "<a href='edit.php?id=" . $pagecontent['id'] . "' style='font-size: smaller;'>Uppdatera sidan</a>" : null;
 $author = $pagecontent['name'] ? "<p style='font-size: smaller;'>Av" . $pagecontent['name'] . ". </p>" : null;
-
+$leaf['title'] = $pagecontent['title'];
 //$leaf['debug'] = $cpage->getDBDump();
 
 // Do it and store it all in variables in the Leaf container
 $leaf['main'] = <<<EOD
-        <h1>{$pagecontent['title']}</h1>
+        <h1>{$leaf['title']}</h1>
         <aside id="report">
 	{$aside}
 	<hr style="border: 1px dashed #555;">

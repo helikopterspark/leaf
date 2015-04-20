@@ -30,6 +30,7 @@ include(LEAF_INSTALL_PATH . '/src/bootstrap.php');
  * 
  */
 session_name(preg_replace('/[^a-z\d]/i', '', __DIR__));
+//session_cache_limiter('private_no_expire');
 session_start();
 
 /**
@@ -127,6 +128,8 @@ $leaf['menu'] = array(
                 'items' => $pagemenu
                 ),
             ),
+        'image' => array('text' => 'Bilder', 'url' => 'img_test.php', 'title' => 'Bilder'),
+        'gallery' => array('text' => 'Galleri', 'url' => 'gallery.php', 'title' => 'Galleri'),
         'report' => array('text' => 'Redovisning', 'url' => 'report.php', 'title' => 'Redovisning'),
         'source' => array('text' => 'Källkod', 'url' => 'source.php', 'title' => 'Källkod'),
         'login' => array('text' => 'Login', 'url' => 'login.php', 'title' => 'Login',

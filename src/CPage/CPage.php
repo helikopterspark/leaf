@@ -45,7 +45,7 @@ class CPage extends CContent {
 				$c = $res[0];
 				// Filter content before using it.
 				$c->data = $this->textfilter->doFilter($c->data, "{$c->filter},purify,typography");
-
+				
 				return array('id' => $c->id,
 						'title' => $c->title,
 						'data' => $c->data,
