@@ -5,16 +5,13 @@
  *
  */
 class CImage {
-    /**
-     * Public properties
-     *
-     */
-    public $src;
-    public $pathToImage;
+    
     /**
      * Private properties
      *
      */
+    private $src;
+    private $pathToImage;
     private $saveAs;
     private $quality;
     private $ignoreCache;
@@ -33,7 +30,9 @@ class CImage {
     private $filesize;
     private $fileExtension;
     private $sharpen;
+    private $filter;
     private $verbose;
+    private $allowedFilters = array('grayscale' => IMG_FILTER_GRAYSCALE);
 
     /**
      * Constructor
@@ -59,6 +58,7 @@ class CImage {
         $this->newHeight = isset($_GET['height']) ? $_GET['height'] : null;
         $this->cropToFit = isset($_GET['crop-to-fit']) ? true : null;
         $this->sharpen = isset($_GET['sharpen']) ? true : null;
+        $this->filter = isset($_GET['filter']) && array_key_exists($_GET['filter'], $this->allowedFilters) ? $_GET['filter'] : null;
 
         $this->pathToImage = realpath(IMG_PATH . $this->src);
 
@@ -68,7 +68,7 @@ class CImage {
         isset($this->src) or $this->errorMessage('Must set src-attribute.');
         preg_match('#^[a-z0-9A-Z-_\.\/]+$#', $this->src) or $this->errorMessage('Filename contains invalid characters.');
         substr_compare(IMG_PATH, $this->pathToImage, 0, strlen(IMG_PATH)) == 0 or $this->errorMessage('Security constraint: Source image is not directly below the directory IMG_PATH.');
-        is_null($this->saveAs) or in_array($this->saveAs, array('png', 'jpg', 'jpeg')) or $this->errorMessage('Not a valid extension to save image as');
+        is_null($this->saveAs) or in_array($this->saveAs, array('png', 'jpg', 'jpeg', 'gif')) or $this->errorMessage('Not a valid extension to save image as');
         is_null($this->quality) or ( is_numeric($this->quality) and $this->quality > 0 and $this->quality <= 100) or $this->errorMessage('Quality out of range');
         is_null($this->newWidth) or ( is_numeric($this->newWidth) and $this->newWidth > 0 and $this->newWidth <= $this->maxWidth) or $this->errorMessage('Width out of range');
         is_null($this->newHeight) or ( is_numeric($this->newHeight) and $this->newHeight > 0 and $this->newHeight <= $this->maxHeight) or $this->errorMessage('Height out of range');
@@ -239,6 +239,16 @@ EOD;
                 }
                 break;
 
+            case 'gif':
+                $this->image = imagecreatefromgif($this->pathToImage);
+                if (!$this->saveAs) {
+                    $this->saveAs = 'gif';
+                }
+                if ($this->verbose) {
+                    $this->verbose("Opened the image as a GIF image.");
+                }
+                break;
+
             case 'png':
                 $this->image = imagecreatefrompng($this->pathToImage);
                 if (!$this->saveAs) {
@@ -262,29 +272,33 @@ EOD;
         switch ($this->saveAs) {
             case 'JPEG':
             case 'jpeg':
-            case 'jpg': {
-                    if ($this->verbose) {
-                        $this->verbose("Saving image as JPEG to cache using quality = {$this->quality}.");
-                    }
-                    imagejpeg($this->image, $this->cacheFileName, $this->quality);
-                    break;
+            case 'jpg':
+                if ($this->verbose) {
+                    $this->verbose("Saving image as JPEG to cache using quality = {$this->quality}.");
                 }
+                imagejpeg($this->image, $this->cacheFileName, $this->quality);
+                break;
 
-            case 'png': {
-                    if ($this->verbose) {
-                        $this->verbose("Saving image as PNG to cache.");
+            case 'gif':
+                if ($this->verbose) {
+                        $this->verbose("Saving image as GIF to cache.");
                     }
-                    // Turn off alpha blending and set alpha flag
-                    imagealphablending($this->image, false);
-                    imagesavealpha($this->image, true);
-                    imagepng($this->image, $this->cacheFileName);
-                    break;
-                }
+                imagegif($this->image, $this->cacheFileName);
+                break;
 
-            default: {
-                    $this->errorMessage('No support to save as this file extension.');
-                    break;
+            case 'png':
+                if ($this->verbose) {
+                    $this->verbose("Saving image as PNG to cache.");
                 }
+                // Turn off alpha blending and set alpha flag
+                imagealphablending($this->image, false);
+                imagesavealpha($this->image, true);
+                imagepng($this->image, $this->cacheFileName);
+                break;
+
+            default:
+                $this->errorMessage('No support to save as this file extension.');
+                break;
         }
 
         if ($this->verbose) {
@@ -307,8 +321,9 @@ EOD;
         $quality_ = is_null($this->quality) ? null : "_q{$this->quality}";
         $cropToFit_ = is_null($this->cropToFit) ? null : "_cf";
         $sharpen_ = is_null($this->sharpen) ? null : "_s";
+        $filter_ = is_null($this->filter) ? null : $this->filter;
         $dirName = preg_replace('/\//', '-', dirname($this->src));
-        $this->cacheFileName = CACHE_PATH . "-{$dirName}-{$parts['filename']}_{$this->newWidth}_{$this->newHeight}{$quality_}{$cropToFit_}{$sharpen_}.{$saveAs}";
+        $this->cacheFileName = CACHE_PATH . "-{$dirName}-{$parts['filename']}_{$this->newWidth}_{$this->newHeight}{$quality_}{$cropToFit_}{$sharpen_}_{$filter_}.{$saveAs}";
         $this->cacheFileName = preg_replace('/^a-zA-Z0-9\.-_/', '', $this->cacheFileName);
 
         if ($this->verbose) {
@@ -408,6 +423,10 @@ EOD;
         if ($this->sharpen) {
             $this->image = $this->sharpenImage($this->image);
         }
+        if ($this->filter) {
+            imagefilter($this->image, $this->allowedFilters[$this->filter]);
+        }
+
         $this->saveImage();
         // Output the resulting image
         $this->outputImage($this->cacheFileName);

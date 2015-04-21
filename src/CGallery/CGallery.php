@@ -41,7 +41,7 @@ class CGallery {
      * @param array $validImages to define extensions on what are considered to be valid images.
      * @return string html with ul/li to display the gallery.
      */
-    private function readAllItemsInDir($path, $validImages = array('png', 'jpg', 'jpeg')) {
+    private function readAllItemsInDir($path, $validImages = array('png', 'jpg', 'jpeg', 'gif')) {
         $files = glob($path . '/*');
         $gallery = "<ul class='gallery'>\n";
         $len = strlen(GALLERY_PATH);
@@ -84,7 +84,7 @@ class CGallery {
      * @param array $validImages to define extensions on what are considered to be valid images.
      * @return string html to display the gallery item.
      */
-    private function readItem($path, $validImages = array('png', 'jpg', 'jpeg')) {
+    private function readItem($path, $validImages = array('png', 'jpg', 'jpeg', 'gif')) {
         $parts = pathinfo($path);
         if (!(is_file($path) && in_array($parts['extension'], $validImages))) {
             return "<p>This is not a valid image for this gallery.";

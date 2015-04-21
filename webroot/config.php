@@ -109,11 +109,14 @@ $leaf['menu'] = array(
         'content' => array('text' => 'TextDB', 'url' => 'view.php', 'title' => 'TextDB',
             'submenu' => array(
                 'class' => 'submenu',
-                'items' => array(
+                'items' => array_merge(array(
                     'edit' => array('text' => 'Ny/Redigera', 'url' => 'edit.php', 'title' => 'Ny/Redigera'),
                     'reset' => array('text' => 'Återställ', 'url' => 'reset.php', 'title' => 'Återställ'),
-                    'textfilter' => array('text' => 'Textfilter', 'url' => 'textfilter.php', 'title' => 'Textfilter'),
-                ),
+                    'divider1' => array('text' => '=== Sidor ===', 'url' => 'page.php', 'title' => 'Sidor'),
+                ), $pagemenu, array(
+                'divider2' => array('text' => '===========', 'url' => '', 'title' => ''),
+                'textfilter' => array('text' => 'Textfilter', 'url' => 'textfilter.php', 'title' => 'Textfilter'),
+                )),
             ),
         ),
         'blog' => array('text' => 'Blogg', 'url' => 'blog.php', 'title' => 'Blogg',
@@ -122,14 +125,14 @@ $leaf['menu'] = array(
                 'items' => $blogmenu
                 ),
             ),
-        'page' => array('text' => 'Sidor', 'url' => 'page.php', 'title' => 'Sidor',
+        'gallery' => array('text' => 'Galleri', 'url' => 'gallery.php', 'title' => 'Galleri',
             'submenu' => array(
                 'class' => 'submenu',
-                'items' => $pagemenu
+                'items' => array(
+                    'image' => array('text' => 'Bildhantering', 'url' => 'img_test.php', 'title' => 'Bildhantering'),
+                    ),
                 ),
             ),
-        'image' => array('text' => 'Bilder', 'url' => 'img_test.php', 'title' => 'Bilder'),
-        'gallery' => array('text' => 'Galleri', 'url' => 'gallery.php', 'title' => 'Galleri'),
         'report' => array('text' => 'Redovisning', 'url' => 'report.php', 'title' => 'Redovisning'),
         'source' => array('text' => 'Källkod', 'url' => 'source.php', 'title' => 'Källkod'),
         'login' => array('text' => 'Login', 'url' => 'login.php', 'title' => 'Login',

@@ -106,7 +106,13 @@ $leaf['main'] = <<<EOD
 
 <img src="img.php?src=kodim15.png&save-as=jpg&width=300&height=300&crop-to-fit&sharpen" alt="Flicka, förminskad, beskuren & skarpare"/>
 
+<h2>Gör bilden svartvit (gråskala)</h2>
 
+<p>Här är bilden beskuren till 300x300 pixlar och i gråskala.</p>
+
+<p><code>&lt;img src="img.php?src=kodim15.png&save-as=jpg&width=300&height=300&crop-to-fit&filter=grayscale" alt="Flicka, förminskad, beskuren och i gråskala"/&gt;</code><br>
+
+<img src="img.php?src=kodim15.png&save-as=jpg&width=300&height=300&crop-to-fit&filter=grayscale" alt="Flicka, förminskad, beskuren och i gråskala"/></p>
 
 EOD;
 
