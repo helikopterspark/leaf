@@ -110,9 +110,17 @@ $leaf['main'] = <<<EOD
 
 <p>Här är bilden beskuren till 300x300 pixlar och i gråskala.</p>
 
-<p><code>&lt;img src="img.php?src=kodim15.png&save-as=jpg&width=300&height=300&crop-to-fit&filter=grayscale" alt="Flicka, förminskad, beskuren och i gråskala"/&gt;</code><br>
+<p><code>&lt;img src="img.php?src=kodim15.png&save-as=jpg&width=300&height=300&crop-to-fit&f=grayscale" alt="Flicka, förminskad, beskuren och i gråskala"/&gt;</code><br>
 
-<img src="img.php?src=kodim15.png&save-as=jpg&width=300&height=300&crop-to-fit&filter=grayscale" alt="Flicka, förminskad, beskuren och i gråskala"/></p>
+<img src="img.php?src=kodim15.png&save-as=jpg&width=300&height=300&crop-to-fit&f=grayscale" alt="Flicka, förminskad, beskuren och i gråskala"/></p>
+
+<h2>Gör bilden sepiafärgad</h2>
+
+<p>Här är bilden beskuren till 300x300 pixlar och kör genom ett kombinerat sepiafilter.</p>
+
+<p><code>&lt;img src="img.php?src=kodim15.png&save-as=jpg&width=300&height=300&crop-to-fit&sc=sepia" alt="Flicka, förminskad, beskuren och i sepia"/&gt;</code><br>
+
+<img src="img.php?src=kodim15.png&save-as=jpg&width=300&height=300&crop-to-fit&sc=sepia" alt="Flicka, förminskad, beskuren och i sepia"/></p>
 
 EOD;
 

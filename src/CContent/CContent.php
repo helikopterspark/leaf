@@ -212,6 +212,7 @@ class CContent {
                 break;
             case 'post': return "blog.php?slug={$content->slug}";
                 break;
+            case 'report': return "report.php?slug={$content->slug}";
             default: return null;
                 break;
         }

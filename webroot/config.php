@@ -97,6 +97,7 @@ $leaf['database']['driver_options'] = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET
 $ccontent = new CContent($leaf['database']);
 $blogmenu = $ccontent->getNavbarArray('post');
 $pagemenu = $ccontent->getNavbarArray('page');
+$reportmenu = $ccontent->getNavbarArray('report');
 
 $leaf['menu'] = array(
     'class' => 'navbar',
@@ -133,7 +134,12 @@ $leaf['menu'] = array(
                     ),
                 ),
             ),
-        'report' => array('text' => 'Redovisning', 'url' => 'report.php', 'title' => 'Redovisning'),
+        'report' => array('text' => 'Redovisning', 'url' => 'report.php', 'title' => 'Redovisning',
+            'submenu' => array(
+                'class' => 'submenu',
+                'items' => $reportmenu
+                ),
+            ),
         'source' => array('text' => 'Källkod', 'url' => 'source.php', 'title' => 'Källkod'),
         'login' => array('text' => 'Login', 'url' => 'login.php', 'title' => 'Login',
             'submenu' => array(

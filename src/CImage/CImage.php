@@ -31,8 +31,17 @@ class CImage {
     private $fileExtension;
     private $sharpen;
     private $filter;
+    private $filtershortcut;
     private $verbose;
-    private $allowedFilters = array('grayscale' => IMG_FILTER_GRAYSCALE);
+    private $allowedFilters = array(
+        'grayscale' => IMG_FILTER_GRAYSCALE,
+        'negate' => IMG_FILTER_NEGATE,
+        'edge' => IMG_FILTER_EDGEDETECT,
+        'emboss' => IMG_FILTER_EMBOSS,
+        'gaussblur' => IMG_FILTER_GAUSSIAN_BLUR,
+        'selectblur' => IMG_FILTER_SELECTIVE_BLUR,
+        'meanremove' => IMG_FILTER_MEAN_REMOVAL
+        );
 
     /**
      * Constructor
@@ -58,7 +67,8 @@ class CImage {
         $this->newHeight = isset($_GET['height']) ? $_GET['height'] : null;
         $this->cropToFit = isset($_GET['crop-to-fit']) ? true : null;
         $this->sharpen = isset($_GET['sharpen']) ? true : null;
-        $this->filter = isset($_GET['filter']) && array_key_exists($_GET['filter'], $this->allowedFilters) ? $_GET['filter'] : null;
+        $this->filter = isset($_GET['f']) && array_key_exists($_GET['f'], $this->allowedFilters) ? $_GET['f'] : null;
+        $this->filtershortcut = isset($_GET['sc']) ? $_GET['sc'] : null;
 
         $this->pathToImage = realpath(IMG_PATH . $this->src);
 
@@ -322,8 +332,9 @@ EOD;
         $cropToFit_ = is_null($this->cropToFit) ? null : "_cf";
         $sharpen_ = is_null($this->sharpen) ? null : "_s";
         $filter_ = is_null($this->filter) ? null : $this->filter;
+        $shortcut_ = is_null($this->filtershortcut) ? null : $this->filtershortcut;
         $dirName = preg_replace('/\//', '-', dirname($this->src));
-        $this->cacheFileName = CACHE_PATH . "-{$dirName}-{$parts['filename']}_{$this->newWidth}_{$this->newHeight}{$quality_}{$cropToFit_}{$sharpen_}_{$filter_}.{$saveAs}";
+        $this->cacheFileName = CACHE_PATH . "-{$dirName}-{$parts['filename']}_{$this->newWidth}_{$this->newHeight}{$quality_}{$cropToFit_}{$sharpen_}_{$filter_}{$shortcut_}.{$saveAs}";
         $this->cacheFileName = preg_replace('/^a-zA-Z0-9\.-_/', '', $this->cacheFileName);
 
         if ($this->verbose) {
@@ -394,6 +405,9 @@ EOD;
      * @return resource $image as the processed image.
      */
     private function sharpenImage($image) {
+        if ($this->verbose) {
+            $this->verbose("Sharpening image.");
+        }
         $matrix = array(
             array(-1, -1, -1,),
             array(-1, 16, -1,),
@@ -403,6 +417,23 @@ EOD;
         $offset = 0;
         imageconvolution($image, $matrix, $divisor, $offset);
         return $image;
+    }
+
+    /**
+     * Sepia filter for image
+     *
+     */
+    private function applySepiaFilter() {
+        if (!$this->sharpen) {
+                $this->image = $this->sharpenImage($this->image);
+            }
+            imagefilter($this->image, IMG_FILTER_GRAYSCALE);
+            imagefilter($this->image, IMG_FILTER_BRIGHTNESS, -10);
+            imagefilter($this->image, IMG_FILTER_CONTRAST, -20);
+            imagefilter($this->image, IMG_FILTER_COLORIZE, 120, 60, 0, 0);
+            if ($this->verbose) {
+                $this->verbose("Using {$this->filtershortcut} filter shortcut.");
+            }
     }
 
     /**
@@ -425,6 +456,11 @@ EOD;
         }
         if ($this->filter) {
             imagefilter($this->image, $this->allowedFilters[$this->filter]);
+            if ($this->verbose) {
+                $this->verbose("Using {$this->filter} filter.");
+            }
+        } elseif ($this->filtershortcut === 'sepia') {
+            $this->applySepiaFilter();
         }
 
         $this->saveImage();
