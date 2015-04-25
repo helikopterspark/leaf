@@ -2,10 +2,15 @@
 
 /**
  * CImage, a class for processing images using PHP GD.
+ * 
+ * Requires constants for file paths in the page controller:
+ * Use DIRECTORY_SEPARATOR to make it work on both windows and unix.
+ * define('IMG_PATH', __DIR__ . DIRECTORY_SEPARATOR . 'img' . DIRECTORY_SEPARATOR);
+ * define('CACHE_PATH', __DIR__ . '/cache/');
  *
  */
 class CImage {
-    
+
     /**
      * Private properties
      *
@@ -30,18 +35,27 @@ class CImage {
     private $filesize;
     private $fileExtension;
     private $sharpen;
-    private $filter;
+    private $filter = array();
     private $filtershortcut;
     private $verbose;
     private $allowedFilters = array(
         'grayscale' => IMG_FILTER_GRAYSCALE,
+        'brightness' => IMG_FILTER_BRIGHTNESS,
+        'contrast' => IMG_FILTER_CONTRAST,
+        'colorize' => IMG_FILTER_COLORIZE,
         'negate' => IMG_FILTER_NEGATE,
-        'edge' => IMG_FILTER_EDGEDETECT,
+        'edgedetect' => IMG_FILTER_EDGEDETECT,
         'emboss' => IMG_FILTER_EMBOSS,
-        'gaussblur' => IMG_FILTER_GAUSSIAN_BLUR,
-        'selectblur' => IMG_FILTER_SELECTIVE_BLUR,
-        'meanremove' => IMG_FILTER_MEAN_REMOVAL
-        );
+        'gaussian_blur' => IMG_FILTER_GAUSSIAN_BLUR,
+        'selective_blur' => IMG_FILTER_SELECTIVE_BLUR,
+        'mean_removal' => IMG_FILTER_MEAN_REMOVAL,
+        'smooth' => IMG_FILTER_SMOOTH,
+        'pixelate' => IMG_FILTER_PIXELATE
+    );
+    private $shortcutConfig = array(
+        'sepia' => "&f=grayscale&f0=brightness,-10&f1=contrast,-20&f2=colorize,120,60,0,0&sharpen",
+        'pixeldistort' => '&w=200&h=200&f=negate&f0=grayscale&f1=pixelate,10,10',
+    );
 
     /**
      * Constructor
@@ -58,6 +72,17 @@ class CImage {
      *
      */
     private function getParams() {
+        // Check for shortcut and merge into $_GET array
+        if (isset($_GET['sc'])) {
+            $this->filtershortcut = isset($_GET['sc']) ? $_GET['sc'] : null;
+            $shortcut = array_key_exists($_GET['sc'], $this->shortcutConfig) ? $this->shortcutConfig[$_GET['sc']] : null;
+
+            if (isset($shortcut)) {
+                parse_str($shortcut, $get);
+                $_GET = array_merge($_GET, $get);
+            }
+        }
+
         $this->src = isset($_GET['src']) ? $_GET['src'] : null;
         $this->verbose = isset($_GET['verbose']) ? true : null;
         $this->saveAs = isset($_GET['save-as']) ? $_GET['save-as'] : null;
@@ -67,8 +92,11 @@ class CImage {
         $this->newHeight = isset($_GET['height']) ? $_GET['height'] : null;
         $this->cropToFit = isset($_GET['crop-to-fit']) ? true : null;
         $this->sharpen = isset($_GET['sharpen']) ? true : null;
-        $this->filter = isset($_GET['f']) && array_key_exists($_GET['f'], $this->allowedFilters) ? $_GET['f'] : null;
-        $this->filtershortcut = isset($_GET['sc']) ? $_GET['sc'] : null;
+
+        $this->filter[] = isset($_GET['f']) && array_key_exists(explode(',', $_GET['f'])[0], $this->allowedFilters) ? $_GET['f'] : null;
+        for ($i = 0; $i < 11; $i++) {
+            $this->filter[] = isset($_GET['f' . $i]) && array_key_exists(explode(',', $_GET['f' . $i])[0], $this->allowedFilters) ? $_GET['f' . $i] : null;
+        }
 
         $this->pathToImage = realpath(IMG_PATH . $this->src);
 
@@ -105,7 +133,7 @@ class CImage {
     }
 
     /**
-     *
+     * Method for verbose mode
      *
      */
     private function verboseMode() {
@@ -113,7 +141,6 @@ class CImage {
         parse_str($_SERVER['QUERY_STRING'], $query);
         unset($query['verbose']);
         $url = '?' . http_build_query($query);
-
 
         echo <<<EOD
 <html lang='en'>
@@ -291,8 +318,8 @@ EOD;
 
             case 'gif':
                 if ($this->verbose) {
-                        $this->verbose("Saving image as GIF to cache.");
-                    }
+                    $this->verbose("Saving image as GIF to cache.");
+                }
                 imagegif($this->image, $this->cacheFileName);
                 break;
 
@@ -331,7 +358,13 @@ EOD;
         $quality_ = is_null($this->quality) ? null : "_q{$this->quality}";
         $cropToFit_ = is_null($this->cropToFit) ? null : "_cf";
         $sharpen_ = is_null($this->sharpen) ? null : "_s";
-        $filter_ = is_null($this->filter) ? null : $this->filter;
+        // Get filter name, multifltr for more than one filter
+        if (isset($this->filter[1])) {
+            $filter_ = "multifltr_";
+        } else {
+            $filter_ = is_null($this->filter[0]) ? null : explode(',', $this->filter[0])[0];
+        }
+
         $shortcut_ = is_null($this->filtershortcut) ? null : $this->filtershortcut;
         $dirName = preg_replace('/\//', '-', dirname($this->src));
         $this->cacheFileName = CACHE_PATH . "-{$dirName}-{$parts['filename']}_{$this->newWidth}_{$this->newHeight}{$quality_}{$cropToFit_}{$sharpen_}_{$filter_}{$shortcut_}.{$saveAs}";
@@ -420,23 +453,6 @@ EOD;
     }
 
     /**
-     * Sepia filter for image
-     *
-     */
-    private function applySepiaFilter() {
-        if (!$this->sharpen) {
-                $this->image = $this->sharpenImage($this->image);
-            }
-            imagefilter($this->image, IMG_FILTER_GRAYSCALE);
-            imagefilter($this->image, IMG_FILTER_BRIGHTNESS, -10);
-            imagefilter($this->image, IMG_FILTER_CONTRAST, -20);
-            imagefilter($this->image, IMG_FILTER_COLORIZE, 120, 60, 0, 0);
-            if ($this->verbose) {
-                $this->verbose("Using {$this->filtershortcut} filter shortcut.");
-            }
-    }
-
-    /**
      * Process and present image
      *
      */
@@ -454,13 +470,34 @@ EOD;
         if ($this->sharpen) {
             $this->image = $this->sharpenImage($this->image);
         }
-        if ($this->filter) {
-            imagefilter($this->image, $this->allowedFilters[$this->filter]);
-            if ($this->verbose) {
-                $this->verbose("Using {$this->filter} filter.");
+        if (isset($this->filter[0])) {
+            foreach ($this->filter as $tempfilter) {
+                if ($tempfilter) {
+
+                    $filterarray = explode(',', $tempfilter);
+                    switch (count($filterarray)) {
+                        case 1:
+                            imagefilter($this->image, $this->allowedFilters[$filterarray[0]]);
+                            break;
+                        case 2:
+                            imagefilter($this->image, $this->allowedFilters[$filterarray[0]], $filterarray[1]);
+                            break;
+                        case 3:
+                            imagefilter($this->image, $this->allowedFilters[$filterarray[0]], $filterarray[1], $filterarray[2]);
+                            break;
+                        case 4:
+                            imagefilter($this->image, $this->allowedFilters[$filterarray[0]], $filterarray[1], $filterarray[2], $filterarray[3]);
+                            break;
+                        case 5:
+                            imagefilter($this->image, $this->allowedFilters[$filterarray[0]], $filterarray[1], $filterarray[2], $filterarray[3], $filterarray[4]);
+                            break;
+                    }
+
+                    if ($this->verbose) {
+                        $this->verbose("Using " . $filterarray[0] . " filter.");
+                    }
+                }
             }
-        } elseif ($this->filtershortcut === 'sepia') {
-            $this->applySepiaFilter();
         }
 
         $this->saveImage();

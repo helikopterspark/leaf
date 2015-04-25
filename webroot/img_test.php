@@ -82,14 +82,14 @@ $leaf['main'] = <<<EOD
 
 <p>Nu är bilden beskuren för att passa in i en ruta om bredd 100px och höjd 200px.</p>
 
-<code>&lt;img src="img.php?src=kodim15.png&save-as=jpg&width=100&height=200&crop-to-fit" alt="Flicka, i en rutan om 100x200 pixlar"/&gt;</code>
+<code>&lt;img src="img.php?src=kodim15.png&save-as=jpg&width=100&height=200&crop-to-fit" alt="Flicka, i en rutan om 100x200 pixlar"/&gt;</code><br>
 
 <img src="img.php?src=kodim15.png&save-as=jpg&width=100&height=200&crop-to-fit" alt="Flicka, i en rutan om 100x200 pixlar"/>
 
 
 <p>Nu är bilden beskuren för att passa in i en ruta om bredd 700px och höjd 200px.</p>
 
-<code>&lt;img src="img.php?src=kodim15.png&save-as=jpg&width=700&height=200&crop-to-fit" alt="Flicka, i en rutan om 700x200 pixlar"/&gt;</code>
+<code>&lt;img src="img.php?src=kodim15.png&save-as=jpg&width=700&height=200&crop-to-fit" alt="Flicka, i en rutan om 700x200 pixlar"/&gt;</code><br>
 
 <img src="img.php?src=kodim15.png&save-as=jpg&width=700&height=200&crop-to-fit" alt="Flicka, i en rutan om 700x200 pixlar"/>
 
@@ -114,13 +114,29 @@ $leaf['main'] = <<<EOD
 
 <img src="img.php?src=kodim15.png&save-as=jpg&width=300&height=300&crop-to-fit&f=grayscale" alt="Flicka, förminskad, beskuren och i gråskala"/></p>
 
+<h2>Pixelera bilden</h2>
+
+<p>Här är bilden beskuren till 300x300 pixlar och körd genom ett pixelfilter.</p>
+
+<p><code>&lt;img src="img.php?src=kodim15.png&save-as=jpg&width=300&height=300&crop-to-fit&f=pixelate,10,10" alt="Flicka, förminskad, beskuren och pixelerad"/&gt;</code><br>
+
+<img src="img.php?src=kodim15.png&save-as=jpg&width=300&height=300&crop-to-fit&f=pixelate,10,10" alt="Flicka, förminskad, beskuren och pixelerad"/></p>
+
 <h2>Gör bilden sepiafärgad</h2>
 
-<p>Här är bilden beskuren till 300x300 pixlar och kör genom ett kombinerat sepiafilter.</p>
+<p>Här är bilden beskuren till 300x300 pixlar och körd genom ett kombinerat sepiafilter via en shortcut-sträng.</p>
 
 <p><code>&lt;img src="img.php?src=kodim15.png&save-as=jpg&width=300&height=300&crop-to-fit&sc=sepia" alt="Flicka, förminskad, beskuren och i sepia"/&gt;</code><br>
 
 <img src="img.php?src=kodim15.png&save-as=jpg&width=300&height=300&crop-to-fit&sc=sepia" alt="Flicka, förminskad, beskuren och i sepia"/></p>
+
+<h2>Ytterligare en shortcut, Pixeldistort</h2>
+
+<p>Här är bilden beskuren till 300x300 pixlar och körd genom ett kombinerat filter.</p>
+
+<p><code>&lt;img src="img.php?src=kodim15.png&save-as=jpg&width=300&height=300&crop-to-fit&sc=pixeldistort" alt="Flicka, förminskad, beskuren, i negativ gråskala och pixelerad"/&gt;</code><br>
+
+<img src="img.php?src=kodim15.png&save-as=jpg&width=300&height=300&crop-to-fit&sc=pixeldistort" alt="Flicka, förminskad, beskuren, i negativ gråskala och pixelerad"/></p>
 
 EOD;
 
