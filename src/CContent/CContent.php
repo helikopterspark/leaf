@@ -279,7 +279,7 @@ class CContent {
      * @return $list html list
      */
     public function listDBContent() {
-        $sql = 'SELECT *, (published <= NOW()) AS available FROM VContent WHERE deleted IS NULL;';
+        $sql = 'SELECT *, (published <= NOW()) AS available FROM VContent WHERE type != "report" AND deleted IS NULL;';
         $res = $this->db->ExecuteSelectQueryAndFetchAll($sql);
 
         $list = '<ul>';
@@ -584,8 +584,8 @@ EOD;
             $login = DB_USER;
             $password = DB_PASSWORD;
             $reset = null;
-			*/
-            
+			
+            */
               // Restore the database to its original settings local
               $sql = 'reset.sql';
               $mysql = '/Applications/XAMPP/xamppfiles/bin/mysql';

@@ -48,7 +48,7 @@ class CReport extends CContent {
         if (isset($res[0])) {
             foreach ($res as $c) {
                 $html .= <<<EOD
-		<h2 id="{$c->id}">{$c->title}</a></h2>
+		<h2 id="{$c->id}">{$c->title}</h2>
         <div class='article_text'>
         {$c->data}
         </div>
