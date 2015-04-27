@@ -362,7 +362,7 @@ EOD;
         if (isset($this->filter[1])) {
             $filter_ = "multifltr_";
         } else {
-            $filter_ = is_null($this->filter[0]) ? null : explode(',', $this->filter[0])[0];
+            $filter_ = is_null($this->filter[0]) ? null : str_replace(',', '', $this->filter[0]);
         }
 
         $shortcut_ = is_null($this->filtershortcut) ? null : $this->filtershortcut;
