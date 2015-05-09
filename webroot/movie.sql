@@ -1,6 +1,8 @@
 -- CREATE DATABASE IF NOT EXISTS Movie;
  
 -- USE Movie;
+-- USE carb14;
+USE Kmom05oophp;
 
 SET NAMES 'utf8';
 
@@ -103,8 +105,9 @@ FROM Movie AS M
 GROUP BY M.id
 ;
  
-SELECT * FROM VMovie;
+-- SELECT * FROM VMovie;
 
+/*
 --
 -- Table for user
 --
@@ -126,8 +129,9 @@ INSERT INTO USER (acronym, name, salt) VALUES
  
 UPDATE USER SET password = md5(concat('doe', salt)) WHERE acronym = 'doe';
 UPDATE USER SET password = md5(concat('admin', salt)) WHERE acronym = 'admin';
+*/
  
-SELECT * FROM USER;
+-- SELECT * FROM USER;
 
 -- Testa användare/lösenord
 -- SELECT acronym, name FROM USER WHERE acronym = ? AND password = md5(concat(?, salt))

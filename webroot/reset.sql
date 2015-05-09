@@ -1,4 +1,5 @@
--- CREATE DATABASE IF NOT EXISTS Kmom05oophp;
+-- DROP DATABASE Kmom05oophp;
+CREATE DATABASE IF NOT EXISTS Kmom05oophp;
 
 USE Kmom05oophp;
 -- USE carb14;
